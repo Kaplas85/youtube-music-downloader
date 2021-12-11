@@ -9,7 +9,7 @@ def download_playlist(playlist_url: str, folder_name: str) -> None:
     p: Playlist = Playlist(playlist_url)
 
     # Create Folder
-    destination = f"./{folder_name}"
+    destination = f"./sounds_{folder_name}"
 
     # Downloading
     for video in p.videos:
@@ -26,5 +26,5 @@ if __name__ == "__main__":
     download_playlist(playlist_url, folder_name)
 
     print("---------------\n\n")
-    print(f"Playlist descargada en: {start_time - datetime.now()}")
+    print(f"Playlist descargada en: {datetime.now() - start_time}")
     print("\n\n---------------")
