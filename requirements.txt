@@ -1,8 +1,2 @@
 black==21.12b0
-click==8.0.3
-mypy-extensions==0.4.3
-pathspec==0.9.0
-platformdirs==2.4.0
 pytube==11.0.1
-tomli==1.2.2
-typing_extensions==4.0.1
