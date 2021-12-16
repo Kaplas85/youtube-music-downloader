@@ -2,7 +2,7 @@
 from datetime import datetime
 
 # PyTube
-from pytube import Playlist
+from pytube import Playlist, YouTube
 
 
 def download_playlist(playlist_url: str, folder_name: str) -> None:
@@ -13,18 +13,37 @@ def download_playlist(playlist_url: str, folder_name: str) -> None:
 
     # Downloading
     for video in p.videos:
-        print(f"Descargando canción {video.title}")
+        print(f"Dowloading song {video.title}")
         video.streams.filter(only_audio=True).first().download(output_path=destination)
+
+
+def download_single(song_url: str, folder_name: str) -> None:
+    yt = YouTube(song_url)
+    destination = f"./sounds_{folder_name}"
+    print(f"Dowloading {yt.title} song")
+    yt.streams.filter(only_audio=True).first().download(output_path=destination)
 
 
 if __name__ == "__main__":
 
-    playlist_url = str(input("Playlist URL: "))
+    is_single = str(input("Are you wanna download a single song? [y/n]: "))
+
+    while not is_single:
+        is_single = str(
+            input('Write "y" or "n". Are you wanna download a single song? [y/n] : ')
+        )
+
+    url = str(input("Song or Playlist URL: "))
     folder_name = str(input("Nombre de la carpeta: "))
 
     start_time = datetime.now()
-    download_playlist(playlist_url, folder_name)
+    if is_single == "y":
+        download_single(url, folder_name)
+        item = "Song"
+    elif is_single == "n":
+        download_playlist(url, folder_name)
+        item = "Playlist"
 
     print("---------------\n\n")
-    print(f"Playlist descargada en: {datetime.now() - start_time}")
+    print(f"{item} dowloaded in: {datetime.now() - start_time}")
     print("\n\n---------------")
