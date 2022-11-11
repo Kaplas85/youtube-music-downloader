@@ -34,7 +34,7 @@ if __name__ == "__main__":
         )
 
     url = str(input("Song or Playlist URL: "))
-    folder_name = str(input("Nombre de la carpeta: "))
+    folder_name = str(input("Folder Name: "))
 
     start_time = datetime.now()
     if is_single == "y":
