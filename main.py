@@ -14,14 +14,18 @@ def download_playlist(playlist_url: str, folder_name: str) -> None:
     # Downloading
     for video in p.videos:
         print(f"Dowloading song {video.title}")
-        video.streams.filter(only_audio=True).first().download(output_path=destination)
+        video.streams.filter(only_audio=True).first().download(
+            output_path=destination, filename=f"{video.title}.mp3"
+        )
 
 
 def download_single(song_url: str, folder_name: str) -> None:
     yt = YouTube(song_url)
     destination = f"./sounds_{folder_name}"
     print(f"Dowloading {yt.title} song")
-    yt.streams.filter(only_audio=True).first().download(output_path=destination)
+    yt.streams.filter(only_audio=True).first().download(
+        output_path=destination, filename=f"{yt.title}"
+    )
 
 
 if __name__ == "__main__":
